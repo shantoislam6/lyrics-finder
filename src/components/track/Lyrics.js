@@ -16,12 +16,16 @@ import Moment from 'react-moment';
         const id = this.props.match.params.id;
 
         let url = `https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${id}&apikey=${process.env.REACT_APP_MM_KEY}`;
+
          axios.get(url)
         .then(res => {
+
             this.setState({
                 lyrics: res.data.message.body.lyrics
             });
+
             url = `https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/track.get?track_id=${id}&apikey=${process.env.REACT_APP_MM_KEY}`;
+
             return axios.get(url);
             })
          .then(res=>{
@@ -46,6 +50,7 @@ import Moment from 'react-moment';
            Object.keys(track).length === 0 ||
             Object.keys(lyrics).length === 0){
             return <Spinner  mt={200} />
+            
         }else{
 
             return (

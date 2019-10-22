@@ -21,7 +21,8 @@ export default class Search extends Component {
         axios.get(search_url).then((res)=>{
             const track_list = res.data.message.body.track_list;
             this.context.scope.setState({
-                track_list : track_list
+                track_list : track_list,
+                heading : 'Search Results'
             });
         })
 
